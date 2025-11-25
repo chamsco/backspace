@@ -1,6 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { ArrowRight, Plus, X, Menu } from 'lucide-react';
 import logo from '../media/backspace logo.svg';
+import { Reveal } from './components/Reveal';
+import BlogList from './pages/BlogList';
+import BlogPost from './pages/BlogPost';
+import WorkList from './pages/WorkList';
+import WorkDetail from './pages/WorkDetail';
 
 // --- Styles for Font and Layout ---
 const GlobalStyles = () => (
@@ -42,74 +48,43 @@ const Logo = ({ className = "" }: { className?: string }) => (
   />
 );
 
-// Native Reveal Component (Replaces GSAP)
-const Reveal = ({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px"
-      }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
+const Nav = () => {
+  const location = useLocation();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
+  const isActive = (path: string) => location.pathname === path || location.pathname.startsWith(path + '/');
+  
   return (
-    <div 
-      ref={ref} 
-      className={`${className} transition-all duration-1000 ease-out transform ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-      }`}
-      style={{ transitionDelay: `${delay}s` }}
-    >
-      {children}
-    </div>
+    <header className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-12 py-8 bg-white/95 backdrop-blur-sm transition-all duration-300">
+      <Link 
+        to="/"
+        className="flex items-center gap-2 cursor-pointer z-50 hover:opacity-60 transition-opacity"
+      >
+        <Logo className="w-8 h-8 md:w-10 md:h-10" />
+        <span className="text-lg font-semibold tracking-tight hidden md:block">Backspace .</span>
+      </Link>
+      
+      <nav className="hidden md:flex space-x-10 text-[15px] font-medium text-gray-600">
+        <Link to="/work" className={`hover:text-black transition-colors ${isActive('/work') ? 'text-black' : ''}`}>Work</Link>
+        <Link to="/blog" className={`hover:text-black transition-colors ${isActive('/blog') ? 'text-black' : ''}`}>Blog</Link>
+        <Link to="/about" className={`hover:text-black transition-colors ${isActive('/about') ? 'text-black' : ''}`}>About</Link>
+        <a href="mailto:hello@backspace.company" className="hover:text-black transition-colors">Contact</a>
+      </nav>
+      <button className="md:hidden z-50" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+      </button>
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 bg-white flex flex-col items-center justify-center space-y-8 text-3xl font-medium z-40 animate-in fade-in duration-200">
+          <Link to="/work" onClick={() => setIsMobileMenuOpen(false)}>Work</Link>
+          <Link to="/blog" onClick={() => setIsMobileMenuOpen(false)}>Blog</Link>
+          <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>About</Link>
+          <a href="mailto:hello@backspace.company">Contact</a>
+        </div>
+      )}
+    </header>
   );
 };
-
-const Nav = ({ setView, currentView, isMobileMenuOpen, setIsMobileMenuOpen }: any) => (
-  <header className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-12 py-8 bg-white/95 backdrop-blur-sm transition-all duration-300">
-    <div 
-      className="flex items-center gap-2 cursor-pointer z-50 hover:opacity-60 transition-opacity"
-      onClick={() => setView('home')}
-    >
-      <Logo className="w-8 h-8 md:w-10 md:h-10" />
-      <span className="text-lg font-semibold tracking-tight hidden md:block">Backspace .</span>
-    </div>
-    
-    <nav className="hidden md:flex space-x-10 text-[15px] font-medium text-gray-600">
-      <button onClick={() => setView('home')} className={`hover:text-black transition-colors ${currentView === 'home' ? 'text-black' : ''}`}>Work</button>
-      <button onClick={() => setView('about')} className={`hover:text-black transition-colors ${currentView === 'about' ? 'text-black' : ''}`}>About</button>
-      <button onClick={() => window.location.href = "mailto:hello@backspace.company"} className="hover:text-black transition-colors">Contact</button>
-    </nav>
-    <button className="md:hidden z-50" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-      {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-    </button>
-    {isMobileMenuOpen && (
-      <div className="fixed inset-0 bg-white flex flex-col items-center justify-center space-y-8 text-3xl font-medium z-40 animate-in fade-in duration-200">
-        <button onClick={() => { setView('home'); setIsMobileMenuOpen(false); }}>Work</button>
-        <button onClick={() => { setView('about'); setIsMobileMenuOpen(false); }}>About</button>
-        <a href="mailto:hello@backspace.company">Contact</a>
-      </div>
-    )}
-  </header>
-);
 
 const Footer = () => (
   <footer className="px-6 md:px-12 lg:px-24 py-12 border-t border-gray-100 flex flex-col md:flex-row justify-between items-start md:items-center text-sm text-gray-500 gap-6">
@@ -176,16 +151,20 @@ const HomeView = ({ setView }: { setView: (view: string) => void }) => {
           <span className="text-sm font-medium text-gray-500">Selected Work</span>
         </div>
         <div className="space-y-0">
-          {work.map((item, i) => (
-            <div key={i} className="group flex flex-col md:flex-row md:items-baseline py-6 border-b border-gray-100 hover:bg-gray-50 transition-colors cursor-pointer">
+          {work.map((item) => (
+            <Link
+              key={item.id}
+              to={`/work/${item.id}`}
+              className="group flex flex-col md:flex-row md:items-baseline py-6 border-b border-gray-100 hover:bg-gray-50 transition-colors cursor-pointer"
+            >
               <div className="md:w-1/4 text-xl font-medium group-hover:translate-x-2 transition-transform duration-300">{item.client}</div>
               <div className="md:w-1/2 text-lg text-gray-500 mt-1 md:mt-0">{item.desc}</div>
               <div className="md:w-1/4 text-sm text-gray-400 text-right mt-2 md:mt-0">{item.role}</div>
-            </div>
+            </Link>
           ))}
         </div>
         <div className="mt-8 text-right">
-          <a href="#" className="inline-flex items-center text-sm font-medium hover:opacity-60">View all projects <ArrowRight size={14} className="ml-2"/></a>
+          <Link to="/work" className="inline-flex items-center text-sm font-medium hover:opacity-60">View all projects <ArrowRight size={14} className="ml-2"/></Link>
         </div>
       </section>
 
@@ -202,9 +181,9 @@ const HomeView = ({ setView }: { setView: (view: string) => void }) => {
             <p className="text-lg text-gray-600 leading-relaxed mb-8 max-w-2xl">
               We've spent the last decade building 0→1 products for the world's top tech companies. Today, we partner with founders to bring their ideas to life. As a fractional AI partner, we will help you shape your product strategy, validate technical feasibility, and build a culture of experimentation.
             </p>
-            <button onClick={() => setView('about')} className="text-lg font-medium underline decoration-gray-300 underline-offset-4 hover:decoration-black transition-all">
+            <Link to="/about" className="text-lg font-medium underline decoration-gray-300 underline-offset-4 hover:decoration-black transition-all">
               Read more about our philosophy
-            </button>
+            </Link>
           </Reveal>
           <div className="mt-24 grid grid-cols-2 gap-8">
             <div>
@@ -397,27 +376,38 @@ const AboutView = () => {
 };
 
 // --- Main App Wrapper ---
-export default function BackspacePortfolio() {
-  const [currentView, setCurrentView] = useState('home');
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+// --- Main App Wrapper ---
+function AppContent() {
+  const location = useLocation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [currentView]);
+  }, [location.pathname]);
 
   return (
     <div className="min-h-screen selection:bg-black selection:text-white">
       <GlobalStyles />
-      <Nav 
-        setView={setCurrentView} 
-        currentView={currentView}
-        isMobileMenuOpen={isMobileMenuOpen}
-        setIsMobileMenuOpen={setIsMobileMenuOpen}
-      />
+      <Nav />
       
-      {currentView === 'home' ? <HomeView setView={setCurrentView} /> : <AboutView />}
+      <Routes>
+        <Route path="/" element={<HomeView />} />
+        <Route path="/about" element={<AboutView />} />
+        <Route path="/blog" element={<BlogList />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/work" element={<WorkList />} />
+        <Route path="/work/:slug" element={<WorkDetail />} />
+      </Routes>
+      
       <Footer />
     </div>
+  );
+}
+
+export default function BackspacePortfolio() {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
   );
 }
 
