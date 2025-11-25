@@ -8,5 +8,5 @@ cmds = ["bun install"]
 cmds = ["bun run build"]
 
 [start]
-cmd = "bunx serve -s dist -l $PORT"
+cmd = "bun run start"
 
