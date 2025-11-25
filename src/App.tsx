@@ -66,7 +66,7 @@ const Nav = ({ isDark, toggleDark }: { isDark: boolean, toggleDark: () => void }
         to="/"
         className="flex items-center gap-2 cursor-pointer z-50 hover:opacity-60 transition-opacity"
       >
-        <Logo className="w-12 h-12 md:w-12 md:h-12 invert dark:invert-0" />
+        <Logo className="w-12 h-12 md:w-12 md:h-12" />
         <span className="text-lg font-semibold tracking-tight hidden md:block text-black dark:text-white">Backspace .</span>
       </Link>
       
@@ -92,12 +92,43 @@ const Nav = ({ isDark, toggleDark }: { isDark: boolean, toggleDark: () => void }
       </div>
 
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 bg-white/90 dark:bg-black/90 backdrop-blur-md flex flex-col items-center justify-center space-y-8 text-3xl font-medium z-40 animate-in fade-in slide-in-from-bottom-4 duration-300 text-black dark:text-white">
-          <Link to="/work" onClick={() => setIsMobileMenuOpen(false)} className="hover:scale-105 transition-transform">Work</Link>
-          <Link to="/blog" onClick={() => setIsMobileMenuOpen(false)} className="hover:scale-105 transition-transform">Blog</Link>
-          <Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className="hover:scale-105 transition-transform">About</Link>
-          <a href="mailto:hello@backspace.company" className="hover:scale-105 transition-transform">Contact</a>
-        </div>
+        <>
+          <div 
+            className="fixed inset-0 bg-black/20 dark:bg-black/60 backdrop-blur-lg z-30"
+            onClick={() => setIsMobileMenuOpen(false)}
+          />
+          <div className="fixed inset-0 flex items-center justify-center z-40 pointer-events-none">
+            <div className="flex flex-col items-center justify-center space-y-8 text-3xl font-medium pointer-events-auto animate-in fade-in slide-in-from-bottom-4 duration-300">
+              <Link 
+                to="/work" 
+                onClick={() => setIsMobileMenuOpen(false)} 
+                className="text-black dark:text-white hover:scale-105 transition-transform"
+              >
+                Work
+              </Link>
+              <Link 
+                to="/blog" 
+                onClick={() => setIsMobileMenuOpen(false)} 
+                className="text-black dark:text-white hover:scale-105 transition-transform"
+              >
+                Blog
+              </Link>
+              <Link 
+                to="/about" 
+                onClick={() => setIsMobileMenuOpen(false)} 
+                className="text-black dark:text-white hover:scale-105 transition-transform"
+              >
+                About
+              </Link>
+              <a 
+                href="mailto:hello@backspace.company" 
+                className="text-black dark:text-white hover:scale-105 transition-transform"
+              >
+                Contact
+              </a>
+            </div>
+          </div>
+        </>
       )}
     </header>
   );
