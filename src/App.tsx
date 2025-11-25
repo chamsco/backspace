@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { ArrowRight, Plus, X, Menu } from 'lucide-react';
+import { Plus, X, Menu, ArrowRight } from 'lucide-react';
 import logo from '../media/backspace-logo.svg';
 import { Reveal } from './components/Reveal';
 import BlogList from './pages/BlogList';
