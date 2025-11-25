@@ -6,12 +6,14 @@ const blogPosts: Record<string, {
   title: string;
   date: string;
   category: string;
+  author: string;
   content: string;
 }> = {
   'building-rag-systems': {
     title: 'Building Production RAG Systems',
     date: '2024-12-15',
     category: 'Engineering',
+    author: 'Alex Chen',
     content: `
       <p class="text-xl text-gray-600 leading-relaxed mb-8">
         Retrieval-Augmented Generation (RAG) has become the de facto standard for building AI applications that need access to private or domain-specific knowledge. But building RAG systems that work reliably in production is harder than it looks.
@@ -37,6 +39,7 @@ const blogPosts: Record<string, {
     title: 'AI Strategy for Early-Stage Startups',
     date: '2024-11-20',
     category: 'Strategy',
+    author: 'Sarah Jones',
     content: `
       <p class="text-xl text-gray-600 leading-relaxed mb-8">
         Every startup wants to be "AI-first" these days. But what does that actually mean when you're resource-constrained and need to ship fast?
@@ -57,6 +60,7 @@ const blogPosts: Record<string, {
     title: 'Evaluation Frameworks for LLM Applications',
     date: '2024-10-10',
     category: 'Engineering',
+    author: 'Michael Ross',
     content: `
       <p class="text-xl text-gray-600 leading-relaxed mb-8">
         Evaluating LLM applications is fundamentally different from traditional software. You're dealing with probabilistic outputs, not deterministic results.
@@ -106,6 +110,8 @@ export default function BlogPost() {
             <span className="text-sm text-gray-400">{post.date}</span>
             <span className="text-sm text-gray-400 ml-2">·</span>
             <span className="text-sm text-gray-400 ml-2">{post.category}</span>
+            <span className="text-sm text-gray-400 ml-2">·</span>
+            <span className="text-sm text-gray-400 ml-2">by {post.author}</span>
           </div>
           <h1 className="text-[2.5rem] md:text-[4rem] lg:text-[5rem] leading-[1.1] font-medium tracking-tight max-w-5xl mb-8">
             {post.title}
@@ -124,4 +130,3 @@ export default function BlogPost() {
     </main>
   );
 }
-

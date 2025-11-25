@@ -1,27 +1,30 @@
 import { Link } from 'react-router-dom';
 import { Reveal } from '../components/Reveal';
 
-const blogPosts = [
+export const blogPosts = [
   { 
     id: 'building-rag-systems',
     title: 'Building Production RAG Systems',
     excerpt: 'Lessons learned from deploying retrieval-augmented generation at scale.',
     date: '2024-12-15',
-    category: 'Engineering'
+    category: 'Engineering',
+    author: 'Alex Chen'
   },
   { 
     id: 'ai-strategy-early-stage',
     title: 'AI Strategy for Early-Stage Startups',
     excerpt: 'How to think about AI integration when you have limited resources.',
     date: '2024-11-20',
-    category: 'Strategy'
+    category: 'Strategy',
+    author: 'Sarah Jones'
   },
   { 
     id: 'evaluation-frameworks',
     title: 'Evaluation Frameworks for LLM Applications',
     excerpt: 'Measuring what matters in production AI systems.',
     date: '2024-10-10',
-    category: 'Engineering'
+    category: 'Engineering',
+    author: 'Michael Ross'
   },
 ];
 
@@ -60,6 +63,9 @@ export default function BlogList() {
                   <p className="text-lg text-gray-600 leading-relaxed">
                     {post.excerpt}
                   </p>
+                  <div className="mt-4 text-sm text-gray-400">
+                    by {post.author}
+                  </div>
                 </div>
               </div>
             </Link>
@@ -69,4 +75,3 @@ export default function BlogList() {
     </main>
   );
 }
-
