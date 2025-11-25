@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { ArrowRight, Plus, X, Menu } from 'lucide-react';
-import logo from '../media/backspace logo.svg';
+import logo from '../media/backspace-logo.svg';
 import { Reveal } from './components/Reveal';
 import BlogList from './pages/BlogList';
 import BlogPost from './pages/BlogPost';
@@ -101,15 +101,15 @@ const Footer = () => (
 );
 
 // --- Views ---
-const HomeView = ({ setView }: { setView: (view: string) => void }) => {
+const HomeView = () => {
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
   const work = [
-    { client: "Nexus", desc: "The intelligent enterprise knowledge base", role: "RAG Strategy" },
-    { client: "Aurora", desc: "Generative design assistant for architects", role: "Product Engineering" },
-    { client: "Pilot", desc: "Your AI executive co-pilot", role: "0→1 Build" },
-    { client: "Vector", desc: "Autonomous supply chain logistics", role: "Computer Vision" },
-    { client: "Tonic", desc: "Private recommendation engine", role: "Strategic Partner" },
-    { client: "Index", desc: "Financial forecasting agent", role: "ML Ops" },
+    { id: 'nexus', client: "Nexus", desc: "The intelligent enterprise knowledge base", role: "RAG Strategy" },
+    { id: 'aurora', client: "Aurora", desc: "Generative design assistant for architects", role: "Product Engineering" },
+    { id: 'pilot', client: "Pilot", desc: "Your AI executive co-pilot", role: "0→1 Build" },
+    { id: 'vector', client: "Vector", desc: "Autonomous supply chain logistics", role: "Computer Vision" },
+    { id: 'tonic', client: "Tonic", desc: "Private recommendation engine", role: "Strategic Partner" },
+    { id: 'index', client: "Index", desc: "Financial forecasting agent", role: "ML Ops" },
   ];
 
   const approach = [
@@ -376,7 +376,6 @@ const AboutView = () => {
 };
 
 // --- Main App Wrapper ---
-// --- Main App Wrapper ---
 function AppContent() {
   const location = useLocation();
 
@@ -410,4 +409,3 @@ export default function BackspacePortfolio() {
     </BrowserRouter>
   );
 }
-
