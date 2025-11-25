@@ -61,7 +61,7 @@ const Nav = () => {
         to="/"
         className="flex items-center gap-2 cursor-pointer z-50 hover:opacity-60 transition-opacity"
       >
-        <Logo className="w-8 h-8 md:w-10 md:h-10" />
+        <Logo className="w-10 h-10 md:w-12 md:h-12" />
         <span className="text-lg font-semibold tracking-tight hidden md:block">Backspace .</span>
       </Link>
       
@@ -75,11 +75,11 @@ const Nav = () => {
         {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 bg-white flex flex-col items-center justify-center space-y-8 text-3xl font-medium z-40 animate-in fade-in duration-200">
-          <Link to="/work" onClick={() => setIsMobileMenuOpen(false)}>Work</Link>
-          <Link to="/blog" onClick={() => setIsMobileMenuOpen(false)}>Blog</Link>
-          <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>About</Link>
-          <a href="mailto:hello@backspace.company">Contact</a>
+        <div className="fixed inset-0 bg-white/90 backdrop-blur-md flex flex-col items-center justify-center space-y-8 text-3xl font-medium z-40 animate-in fade-in slide-in-from-bottom-4 duration-300">
+          <Link to="/work" onClick={() => setIsMobileMenuOpen(false)} className="hover:scale-105 transition-transform">Work</Link>
+          <Link to="/blog" onClick={() => setIsMobileMenuOpen(false)} className="hover:scale-105 transition-transform">Blog</Link>
+          <Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className="hover:scale-105 transition-transform">About</Link>
+          <a href="mailto:hello@backspace.company" className="hover:scale-105 transition-transform">Contact</a>
         </div>
       )}
     </header>
