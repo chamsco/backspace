@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight, Plus, X, Menu } from 'lucide-react';
-import logo from '../media/backspace logo.svg';
+import logo from '../media/backspace-logo.svg';
 
 // --- Styles for Font and Layout ---
 const GlobalStyles = () => (
