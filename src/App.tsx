@@ -225,11 +225,11 @@ const HomeView = () => {
       <div className="grain"></div>
       
       {/* Hero Headline */}
-      <section className="px-6 md:px-12 pb-12 border-b-2 border-black">
+      <section className="px-6 md:px-12 pb-12 border-b-2 border-black pt-4">
         <Reveal>
           <div className="flex flex-col gap-4">
              <span className="inline-block px-3 py-1 border border-black text-xs font-bold uppercase tracking-widest w-max bg-black text-white">Breaking News</span>
-             <h1 className="text-6xl md:text-8xl lg:text-9xl font-black serif leading-[0.9] tracking-tighter uppercase mb-6">
+             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black serif leading-[0.9] tracking-tighter uppercase mb-6 mt-2">
               Strategic AI <br/>
               <span className="italic font-light">Partner.</span>
             </h1>
