@@ -129,7 +129,7 @@ const Nav = () => {
 
           {/* 2. Title (Right) */}
           <div 
-              className="flex items-center justify-end cursor-pointer hover:text-gray-600 transition-colors"
+              className="hidden md:flex items-center justify-end cursor-pointer hover:text-gray-600 transition-colors"
               onClick={() => navigate('/')}
           >
              <h1 className="text-3xl md:text-5xl font-black tracking-tighter serif text-right leading-none">
