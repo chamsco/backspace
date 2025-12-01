@@ -253,7 +253,7 @@ const HomeView = () => {
 
       {/* Services / Approach Layout */}
       <section className="grid grid-cols-1 md:grid-cols-2 border-b-2 border-black">
-        <div className="p-8 md:p-16 border-b md:border-b-0 md:border-r border-black">
+        <div className="p-8 md:p-16 border-b md:border-b-0 md:border-r border-black flex flex-col items-center text-center">
           <span className="text-xs font-bold uppercase tracking-widest mb-6 block border-b-2 border-black pb-2 w-max">The Philosophy</span>
           <h2 className="text-4xl serif font-bold mb-6">We bridge the gap between research papers and production code.</h2>
           <div className="prose font-serif">
@@ -266,11 +266,12 @@ const HomeView = () => {
           </div>
         </div>
 
-        <div className="grid grid-rows-3">
+        <div className="grid grid-rows-4">
           {[
             { title: "Data Sovereignty", text: "We prioritize your proprietary data. We don't just train models; we build secure data moats." },
             { title: "High Velocity", text: "From hypothesis to inference API in weeks. We zoom through explorations until we find the signal." },
-            { title: "Systems Thinking", text: "Small prompt chains to agent swarms. We create reusable components and evaluation frameworks." }
+            { title: "Systems Thinking", text: "Small prompt chains to agent swarms. We create reusable components and evaluation frameworks." },
+            { title: "Model Agnostic", text: "We aren't married to OpenAI or Anthropic. We select the best architecture for the specific task, optimizing for cost and latency." }
           ].map((feature, i) => (
             <div key={i} className="p-8 border-b border-black last:border-b-0 flex flex-col justify-center hover:bg-[#EAEAE5] transition-colors">
               <h3 className="serif text-2xl font-bold mb-2 flex items-center gap-3">
