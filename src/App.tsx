@@ -121,10 +121,10 @@ const Nav = () => {
           
           {/* 1. Logo (Left) */}
           <div 
-              className="w-10 h-10 border-2 border-black bg-black text-white font-mono text-xs flex items-center justify-center cursor-pointer" 
+              className="cursor-pointer flex items-center" 
               onClick={() => navigate('/')}
           >
-              <Logo className="w-8 h-8 p-1 invert" />
+              <Logo className="w-16 h-16 md:w-20 md:h-20 brightness-0" />
           </div>
 
           {/* 2. Title (Right) */}
