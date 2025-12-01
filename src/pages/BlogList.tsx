@@ -1,28 +1,28 @@
 import { Link } from 'react-router-dom';
-import { Reveal } from '../components/Reveal';
+import { ArrowRight, Rss } from 'lucide-react';
 
 export const blogPosts = [
   { 
     id: 'building-rag-systems',
     title: 'Building Production RAG Systems',
     excerpt: 'Lessons learned from deploying retrieval-augmented generation at scale.',
-    date: '2024-12-15',
+    date: 'Oct 25, 2025',
     category: 'Engineering',
     author: 'Alex Chen'
   },
   { 
     id: 'ai-strategy-early-stage',
-    title: 'AI Strategy for Early-Stage Startups',
-    excerpt: 'How to think about AI integration when you have limited resources.',
-    date: '2024-11-20',
+    title: 'The Generative AI Value Trap',
+    excerpt: 'Analyzing why many early GenAI projects fail to deliver ROI and how to avoid common pitfalls.',
+    date: 'Sep 10, 2025',
     category: 'Strategy',
     author: 'Sarah Jones'
   },
   { 
     id: 'evaluation-frameworks',
-    title: 'Evaluation Frameworks for LLM Applications',
-    excerpt: 'Measuring what matters in production AI systems.',
-    date: '2024-10-10',
+    title: 'Building Autonomous Agents with LLMs',
+    excerpt: 'A tutorial on constructing reliable, multi-step agents for complex financial tasks.',
+    date: 'Aug 1, 2025',
     category: 'Engineering',
     author: 'Michael Ross'
   },
@@ -30,47 +30,42 @@ export const blogPosts = [
 
 export default function BlogList() {
   return (
-    <main className="pt-32 md:pt-48 animate-in fade-in duration-500">
-      <section className="px-6 md:px-12 lg:px-24 mb-32">
-        <Reveal>
-          <h1 className="text-[2.5rem] md:text-[4rem] lg:text-[5rem] leading-[1.1] font-medium tracking-tight max-w-5xl mb-8">
-            Blog
+    <main className="pt-[170px] md:pt-[145px] min-h-screen"> 
+      <div className="grain"></div>
+      
+      <section className="px-6 md:px-12 py-16 border-b-2 border-black">
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-black serif leading-[0.9] tracking-tighter uppercase mb-4">
+            The Wire.
           </h1>
-          <p className="text-xl text-gray-600 leading-relaxed max-w-2xl">
-            Thoughts on AI, engineering, and building products that matter.
+          <p className="text-xl md:text-3xl font-medium serif leading-tight max-w-4xl opacity-80 border-b border-black pb-8">
+            Insights and technical deep dives from the Backspace Research Collective.
           </p>
-        </Reveal>
       </section>
 
-      <section className="px-6 md:px-12 lg:px-24 mb-32">
-        <div className="space-y-0">
-          {blogPosts.map((post) => (
-            <Link 
-              key={post.id}
-              to={`/blog/${post.id}`}
-              className="group block py-8 border-b border-gray-100 hover:bg-gray-50 transition-colors"
-            >
-              <div className="flex flex-col md:flex-row md:items-baseline gap-4">
-                <div className="md:w-1/4">
-                  <span className="text-sm text-gray-400">{post.date}</span>
-                  <span className="text-sm text-gray-400 ml-2">·</span>
-                  <span className="text-sm text-gray-400 ml-2">{post.category}</span>
-                </div>
-                <div className="md:w-3/4">
-                  <h2 className="text-2xl font-medium mb-2 group-hover:opacity-70 transition-opacity">
-                    {post.title}
-                  </h2>
-                  <p className="text-lg text-gray-600 leading-relaxed">
-                    {post.excerpt}
-                  </p>
-                  <div className="mt-4 text-sm text-gray-400">
-                    by {post.author}
-                  </div>
-                </div>
+      {/* Article List */}
+      <section className="grid grid-cols-1 md:grid-cols-3 border-b-2 border-black">
+          {blogPosts.map((article, i) => (
+              <div 
+                  key={article.id} 
+                  className={`p-8 border-b-2 border-black md:border-b-0 ${i < 2 ? 'md:border-r-2' : ''} transition-all duration-300 hover:bg-[#EAEAE5] cursor-pointer`}
+              >
+                  <Link to={`/blog/${article.id}`} className="block">
+                    <span className="font-mono text-xs uppercase tracking-widest text-gray-500 block mb-2">{article.date}</span>
+                    <h2 className="text-3xl serif font-bold mb-3 leading-tight">{article.title}</h2>
+                    <p className="font-mono text-sm mb-4 opacity-80">{article.excerpt}</p>
+                    <div className="flex items-center text-xs font-bold uppercase tracking-widest border-b border-black w-max pb-1">
+                        Read Article <ArrowRight size={14} className="ml-2" />
+                    </div>
+                  </Link>
               </div>
-            </Link>
           ))}
-        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="p-12 text-center">
+         <div className="flex items-center justify-center font-mono text-sm uppercase tracking-widest text-gray-600">
+             <Rss size={16} className="mr-2"/> Subscribe to our Feed
+         </div>
       </section>
     </main>
   );
