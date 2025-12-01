@@ -221,11 +221,11 @@ const HomeView = () => {
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
 
   return (
-    <main className="pt-[170px] md:pt-[145px] min-h-screen"> 
+    <main className="pt-[170px] md:pt-[145px]"> 
       <div className="grain"></div>
       
       {/* Hero Headline */}
-      <section className="px-6 md:px-12 pb-12 border-b-2 border-black pt-6">
+      <section className="px-6 md:px-12 border-b-2 border-black pt-12 min-h-[calc(100vh-170px)] md:min-h-[calc(100vh-145px)] flex flex-col">
         <Reveal>
           <div className="flex flex-col gap-6">
              <span className="inline-block px-3 py-1 border border-black text-xs font-bold uppercase tracking-widest w-max bg-black text-white">Breaking News</span>
@@ -236,7 +236,7 @@ const HomeView = () => {
           </div>
         </Reveal>
         
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 border-t border-black pt-8 mt-4">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 border-t border-black pt-8 mt-4 flex-grow">
           <div className="md:col-span-4 border-r border-black pr-8 hidden md:block">
             <p className="text-xs uppercase tracking-widest mb-2 font-bold">Editorial</p>
             <p className="text-sm leading-relaxed">
