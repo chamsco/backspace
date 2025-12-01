@@ -253,11 +253,11 @@ const HomeView = () => {
 
       {/* Services / Approach Layout */}
       <section className="grid grid-cols-1 md:grid-cols-2 border-b-2 border-black">
-        <div className="p-8 md:p-16 border-b md:border-b-0 md:border-r border-black flex flex-col items-center">
+        <div className="p-8 md:p-16 border-b md:border-b-0 md:border-r border-black flex flex-col justify-center">
           <span className="text-xs font-bold uppercase tracking-widest mb-6 block border-b-2 border-black pb-2 w-max">The Philosophy</span>
-          <h2 className="text-4xl serif font-bold mb-6 italic font-light text-right w-full">We bridge the gap between research papers and production code.</h2>
-          <div className="prose font-serif max-w-md">
-            <p className="text-lg leading-relaxed mb-6 text-right">
+          <h2 className="text-4xl serif font-bold mb-6 italic font-light text-left">We bridge the gap between research papers and production code.</h2>
+          <div className="prose font-serif max-w-md mx-auto">
+            <p className="text-lg leading-relaxed mb-6 text-left">
               <span className="text-5xl float-left mr-3 mt-[-10px] font-bold">W</span>e've spent the last decade building complex systems for top tech companies. Today, we partner with founders to bring their AI-driven ideas to life.
             </p>
             <div className="flex justify-center">
